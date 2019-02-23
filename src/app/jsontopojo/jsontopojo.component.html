@@ -1,0 +1,30 @@
+<div id="jtpform">
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Enter package name" [(ngModel)]="packageInput"/>
+  </div>
+
+  <div class="form-group">
+    <input type="text" class="form-control" placeholder="Enter class name" [(ngModel)]="classInput"/>
+  </div>
+
+  <div class="form-group">
+    <textarea rows="20" class="form-control" placeholder="json schema" [(ngModel)]="jsonInput"></textarea>
+  </div>
+
+</div>
+
+<button class="btn primary" (click)="generateJava()">Preview</button>
+<button class="btn primary" (click)="downloadJava()">Download</button>
+<button class="btn primary" (click)="clearList()" *ngIf="javaClasses.length">Clear</button>
+
+<div id="javaOutput" *ngIf="javaClasses.length">
+ 
+  <h3>{{ javaClasses.length }} classes generated</h3>
+  <ul class="list-group" id="javaClassesList">
+      <li *ngFor="let javaClass of javaClasses" class="list-group-item"> 
+          <div id="javaClassHeader"><b>Class name: {{ javaClass.className }} </b></div>
+          <input type="hidden" value="javaClass.classDeclaration"/>
+          <div id="javaClassContent">{{ javaClass.classDeclaration }}</div> 
+      </li>
+  </ul>
+</div>
